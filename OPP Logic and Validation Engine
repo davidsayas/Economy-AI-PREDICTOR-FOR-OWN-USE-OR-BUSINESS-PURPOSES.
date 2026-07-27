@@ -1,2 +1,175 @@
 # OOP LOGIC AND VALIDATION ENGINE
 In this file, we can see how the pillars of the OOP LOGIC AND VALIDATION ENGINE are made, code by code.
+import datetime
+
+class Transaccion:
+    #Es una transaccion financiera individual ( ya sea un gasto o un ingreso)
+    #Incluye una serie de valdiaciones internas para verificar que los datos esten limpios desde el comiento.
+    def __init__(self, monto, concepto: str, categoria: str, tipo: str):
+        self.monto = self._validar_monto(monto) # La clase de cantidad de dinero o la propiedad de cantidad de dinero
+        self.concepto = self._validar_texto(concepto, "concepto") # 
+        self.categoria = self._validar_texto(categoria, "categoria")
+        self.tipo = self._validar_tipo(tipo)
+        self.fecha = datetime.date.today()
+
+#Comentario de la seccion anterior: primero creamos un constructor de clase, propiedades como monto, concepto, categoria y tipo.
+#aparte tambien agregamos la parte de datetime que necesitaremos para hacer una analisis de manera periodica o en el tiempo.
+
+
+
+    def _validar_monto(self, monto) -> float:
+        try:
+            monto_float = float(monto)
+            if monto_float <= 0:
+                raise ValueError("El monto debe ser un numero mayor a cero")
+            return monto_float
+        except ValueError as e:
+            if "could not convert string" in str(e):
+                raise ValueError("El monto debe ser un valor numerico Ejm: 125")
+            raise e
+
+#Comentario de la seccion aterior:
+# Creamos una funcion que valida nuestro monto, todo con un tipo float.
+#entonces utilizamos algunas excepciones para ser mas flexibles a los errores:
+#si monto es menor o igual a cero, devuelveme un ValueError
+#y una excepcion, es decir si no ocurre lo del try, se ejecutara la parte del except.
+#en el except guardamos el error en una variable llamada e.
+#y dice si no se pudo covnertir las tring in la variable
+#devuelveme un value error, y dame los detalles del error en pocas palabras.
+
+    def _validar_texto(self, texto: str, campo: str) -> str:
+        if not isinstance(texto, str) or not texto.strip() :  #Sirve para verificar si un objeto o variable pertenece a un tipo de dato o clase en especifico.
+            raise ValueError(f"El campo '{campo}' no puede estar vacio") 
+        return texto.strip().capitalize()
+
+#.strip() -> elimina los espacios en blanco que hay en un campo de texto
+#Comentario de la parte anterior: 
+# Creamos una funcion que recibe un parametro en este caso llamado texto, o un parametro no, un valor que puede que sean lo mismo
+# ahora el nombre de ese valor es campo, 
+#despues con el condicional le decimos a la maquina si realmente el texto es un texto, no es un dato real, revisa si esta vacio o con espacios en blanco
+#despues paramos el codigo y pedimos que se nos de el error del valor, diciendo que el campo en este caso no puede estar vacio
+# devolviendonos el texto, con la eliminacion de esos espacios y con la primera letra en mayuscula.
+
+    def _validar_tipo(self, tipo: str) -> str:
+        tipo_limpio = str(tipo).strip().lower()
+        if tipo_limpio not in ['ingreso', 'gasto']:
+            raise ValueError("El tipo debe ser estrictamente un ingresos o gasto.")
+        return tipo_limpio 
+
+#Comentario de la funcion anterior:
+#Creamos una funcion de tipo, 
+#Lo que hacemos es convertir tipo en un str, quitarle los espacios en blanco, y pasar todo a mayusculas
+#despues con un condional establecemos que si no se enucentra en las dos propiedades de la primera clase de transacion: ingreso o gasto
+# nos genere un ValueError que diga el tipo debe ser estrictamente un ingreso o gasto
+# y que nos devuelva el tipo_limpio, con las caracteristicas que dije inicialmente.
+
+    def __str__(self):
+        signo = "+" if self.tipo == 'ingreso' else "-"
+        return f"[{self.fecha}] {self.concepto} ({self.categoria}): {signo}${self.monto:.2f}"
+
+# Comentar la funcion anterior: creamos la funcion str, donde el signo sea positivo si la propiedad de tipo es igual a ingreso si no -
+# nos devuelve la fecha, el concepto, la categoria, el signo, el monto
+
+
+#-------------------------------------------------------------------------------------------------------
+
+class CalculadoraFinanciera:
+    def __init__(self):
+        self.historial = []
+
+    def agregar_transaccion(self,transaccion: Transaccion):
+        if not isinstance(transaccion, Transaccion):
+            raise TypeError("Solo se pueden agregar objetos de la clase transaccion")
+        self.historial.append(transaccion)
+        print(f"La transaccion fue agregada con exito: {transaccion.concepto}")
+
+## Comento la clase anterior junto a sus metodos privados ( funciones ):
+# Creamos la clase financiera, y creamos una lista en esa clase.
+#  despues creamos otro metodo con el nombre agregar transaccion, a la cual uno de los parametros se lo asociamos a la clase principal (TRANSACCION)
+# despues si no esta en transaccion que me genere un error de tipo de dato, en el cual me diga que solo se puedan agregar objetos de la clase transaccion
+# despues con self.historial la lista que teniamos anterior mente, le agregamos los datos de transaccion
+
+#Recordar: _funcion_cualquiera, es un metodo privado al cual solo queremos acceder en esta clase
+# funcion_cualqueira, es un metodo publico que permite agregar o operar con nuestra clase desde el exterior por asi decirlo.
+
+    def calcular_balance(self) -> float:
+     balance = 0.0
+     for t in self.historial:
+        if t.tipo == 'ingreso':
+            balance += t.monto
+        elif t.tipo == 'gasto':
+            balance -= t.monto
+     return balance
+
+#Comentario de la seccion anterior del metodo publico
+# creamos una variable la cual esta en cero
+# creamos un loop for para cada elemento en nuestra lista historial
+# que funcione con la condicional de que si cada tipo de e elemento es ingreso o gasto, sume o reste. el monto.
+
+    def resumen_por_categoria(self, tipo : str = 'gasto') -> dict:
+     resumen = {}
+     for t in self.historial:
+        if t.tipo == tipo:
+            resumen[t.categoria] = resumen.get(t.categoria, 0.0) + t.monto
+            return resumen
+
+## Comentario de la parte anterior 
+#Creamos el resumen por cada una de las categorias.
+# 
+
+    def mostrar_reporte(self):
+     print("\n=== 📊 REPORTE FINANCIERO ===")
+     if not self.historial:
+        print("No hay transaccionas registradas")
+        return
+
+     for t in self.historial:
+        print(" ", t)
+
+     print("-" * 30)
+     print(f" Balance Total: {self.calcular_balance():.2f}")
+
+    print("-" * 30)
+
+#-------------------------------------------------------------------------
+#Conexion con consola y manejo de excepciones
+
+    def registrar_desde_consola(calculadora: CalculadoraFinanciera):
+     print("\n--- ✍️ REGISTRAR NUEVA TRANSACCIÓN ---")
+     while True:
+        try:
+            monto_input = input("1. Ingrese el monto (o (s) para salir): ")
+            if monto_input.lower() == 's':
+                break
+
+            concepto = input("2. Concepto (ej. Supermercado): ")
+            categoria = input("3. Cateogiria (ej. Alimentacion, Salario, Ocio): ")
+            tipo = input("4. Tipo (ingreso o gasto):" )
+
+            # al instanciar, se disparan las validaciones internas
+            nueva_transaccion = Transaccion(monto_input, concepto, categoria, tipo)
+
+            # Si ninguna validacion fallo, se guarda en la calculadora
+            calculadora.agregar_transaccion(nueva_transaccion)
+            break
+        except ValueError as error:
+            #Captura errores de logica, (ej: montos negativos, textos vacios, tipos de dato incorrectos)
+            print(f"\n❌ Error de validación: {error}")
+            print("Por favor, intenga ingresar los datos nueva mente. \n")
+        except Exception as error:
+            #Captura de seguridad para cualquier otro error imprevisto
+            print(f"\n❌ Error inesperado: {error}\n")
+
+#---Bloque de prueba ( Ejecucion )-----
+
+if __name__ == "__main__":
+    mi_planificador = CalculadoraFinanciera()
+
+    #1. Agregamos una transaccion valdia por codigo para probar 
+    salario = Transaccion(1500, "Quincena", "Salario", "ingreso")
+    mi_planificador.agregar_transaccion(salario)
+
+    #2. Probamos el ingreso interactivo por consola (Intenta equivocarte a propisito)
+    mi_planificador.registrar_desde_consola()
+    #3. Mostramos el reporte final
+    mi_planificador.mostrar_reporte()
