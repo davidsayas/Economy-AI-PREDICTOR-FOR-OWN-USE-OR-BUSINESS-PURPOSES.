@@ -3,8 +3,6 @@ import datetime
 import os
 
 class Transaccion:
-    "Representa esa transaccion financiera la cual esta clasificada en ingreso o gasto"
-    "junto a sus validaciones internas"
 
     def __init__(self,monto, concepto: str, categoria: str, tipo : str, fecha=None):
         self.monto = self._validar_monto(monto)
@@ -12,7 +10,7 @@ class Transaccion:
         self.categoria = self._validar_texto(categoria, "categoria")
         self.tipo = self._validar_tipo(tipo)
 
-        # Si cargamos DESDE JSON, usamos la fecha guardada, si es nueva, usamos la de hoy-
+        
 
         if fecha:
             self.fecha = fecha
@@ -42,7 +40,7 @@ class Transaccion:
         return tipo_limpio
 
     def to_dict(self):
-        #Convertimos el objeto en un diccionario para poder guardarlo en el formato de texto json
+        
         return {
             "monto": self.monto,
             "concepto": self.concepto,
@@ -52,7 +50,7 @@ class Transaccion:
         }
     @classmethod
     def from_dict(cls, data):
-        #Crea un objeto transaccion a partir de un diccionario cargado de un json.
+       
         return cls(data["monto"]), data["concepto"], data["categoria"], data["tipo"], data["fecha"]
 
     def __str__(self):
@@ -61,7 +59,7 @@ class Transaccion:
 
 #----------------------------------------------------------------------------------
 class CalculadoraFinanciera:
-    #"Gestiona la lista de transacciones, calculos y ahora la persisntecia en disco"
+    
     def __init__(self, archivo_datos ="mis_finanzas.json"):
         self.historial = []
         self.archivo_datos = archivo_datos
@@ -96,20 +94,20 @@ class CalculadoraFinanciera:
         gastos = {}
         for t in self.historial:
             if t.tipo == "gasto":
-                gastos[t.categoria] = gastos.get(t.categoria, 0.0) + t.monto # Si la categoria no esta creada, con esta linea de codigo se crea.
+                gastos[t.categoria] = gastos.get(t.categoria, 0.0) + t.monto 
 
             if not gastos:
                 print("No hay gastos registrados para resumir.")
                 return
 
-            for cat, total in gastos.items(): # Items, me daria todos los valores clave y valor.
+            for cat, total in gastos.items(): 
                 print(f"- {cat}: ${total:.2f}")
 
 # ----- 
     def guardar_datos(self):
-        #Guarda la lista de transacciones en un archivo JSON
+       
         try:
-            #Transformamos los objetos a diccionarios
+       
             datos_exportar = [t.to_dict() for t in self.historial]
             with open(self.archivo_datos, 'w', encoding ='utf-8') as f:
                 json.dump(datos_exportar, f , indent=4)
@@ -118,14 +116,14 @@ class CalculadoraFinanciera:
             print(f"\n❌ Error al guardar los datos: {e}")
 
     def cargar_datos(self):
-        #Carga las transacciones desde un archivo json, protegiendo contra errores.
+    
         if not os.path.exists(self.archivo_datos):
             print("\nℹ️ No se encontró historial previo. Iniciando base de datos limpia.")
             return
         try:
             with open(self.archivo_datos, "r", encoding="utf-8") as f:
                 datos_importados = json.load(f)
-                #Reconstruimos los objetos transaccion desde los diccionarios
+              
                 self.historial = [Transaccion.from_dict(d) for d in datos_importados]
             print(f"\n📂 Se cargaron {len(self.historial)} transacciones del historial.")
         except json.JSONDecodeError:
@@ -150,7 +148,7 @@ def registrar_desde_consola(calculadora: CalculadoraFinanciera):
 def menu_principal():
     """Motor del menú interactivo"""
     calc = CalculadoraFinanciera()
-    calc.cargar_datos() # Intenta cargar datos al iniciar
+    calc.cargar_datos() 
 
     while True:
         print("\n" + "="*35)
