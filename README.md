@@ -36,7 +36,7 @@ cd Economy-AI-PREDICTOR-FOR-OWN-USE-OR-BUSINESS-PURPOSES.
 Distribuido bajo la Licencia **MIT**. Consulta el archivo `LICENSE` para más información.
 ```
 <div align="center">
-  <sub>Hecho con 💜 por <a href="https://github.com">Tu Nombre</a></sub>
+  <sub>Hecho por <a href="https://github.com">Juan David</a></sub>
 </div>
 
 ### 2. Instalar dependencias
