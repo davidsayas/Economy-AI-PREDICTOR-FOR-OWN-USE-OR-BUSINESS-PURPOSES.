@@ -58,4 +58,7 @@ python main.py
 4. 🤖 Predecir Gastos a Fin de Mes (IA)
 5. Guardar y Salir
 
+### 💡 Nota sobre el modelo predictivo: Para realizar una regresión lineal válida, el modelo requiere que existan transacciones registradas en al menos 2 dias distintos del mes actual.
 
+### 📄 Licencia
+Este proyecto es de libre uso para fines personales o comerciales.
