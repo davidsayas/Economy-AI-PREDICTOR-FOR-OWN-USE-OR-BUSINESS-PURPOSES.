@@ -57,5 +57,5 @@ python main.py
 3. Ver Resumen de Gastos por Categoría
 4. 🤖 Predecir Gastos a Fin de Mes (IA)
 5. Guardar y Salir
-```
+
 
