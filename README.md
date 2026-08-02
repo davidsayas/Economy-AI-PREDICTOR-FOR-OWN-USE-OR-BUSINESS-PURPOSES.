@@ -28,9 +28,8 @@ Un sistema de gestión de finanzas personales desarrollado en **Python** que com
 
 ### 1. Clonar el repositorio
 ```bash
-git clone [[https://github.com/tu-usuario/tu-repositorio.git]([https://github.com/davidsayas/Economy-AI-PREDICTOR-FOR-OWN-USE-OR-BUSINESS-PURPOSES.)](https://github.com/tu-usuario/tu-repositorio.git](https://github.com/davidsayas/Economy-AI-PREDICTOR-FOR-OWN-USE-OR-BUSINESS-PURPOSES.))
-cd tu-repositorio
----
+git clone [https://github.com/davidsayas/Economy-AI-PREDICTOR-FOR-OWN-USE-OR-BUSINESS-PURPOSES..git](https://github.com/davidsayas/Economy-AI-PREDICTOR-FOR-OWN-USE-OR-BUSINESS-PURPOSES..git)
+cd Economy-AI-PREDICTOR-FOR-OWN-USE-OR-BUSINESS-PURPOSES.
 
 ## 📄 Licencia
 
