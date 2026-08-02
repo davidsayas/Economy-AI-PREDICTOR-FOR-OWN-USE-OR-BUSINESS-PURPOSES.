@@ -1,108 +1,35 @@
-<div align="center">
+# 💼 Planificador Financiero con Inteligencia Artificial (Python)
 
-# Economy predictor 🚀
-
-*Predice si existira una ganancia o perdida en nuestro negocio, basandose en una serie de datos historica de transacciones : "ingresos" o "gastos"; ideal para esos negocios que quieren prevenir terminar el mes con los numeros en rojo*
-
-[![Estado](https://shields.io)](https://github.com)
-[![Licencia](https://shields.io)](LICENSE)
-[![Versión](https://shields.io)](https://github.com)
-
-[Ver Demo](#-demostración) · [Reportar Bug](https://github.com) · [Solicitar Característica](https://github.com)
-
-</div>
-
----
-
-## 📌 Tabla de Contenidos
-1. [Acerca del Proyecto](#-acerca-del-proyecto)
-2. [Características Principales](#-características-principales)
-3. [Tecnologías Utilizadas](#-tecnologías-utilizadas)
-4. [Instalación y Configuración](#-instalación-y-configuración)
-5. [Uso](#-uso)
-6. [Contribución](#-contribución)
-7. [Licencia](#-licencia)
-
----
-
-## 💡 Acerca del Proyecto
-
-<p align="center">
-  <img src="https://placeholder.com" alt="Vista previa del proyecto" width="800">
-</p>
-
-Aquí puedes explayarte sobre la historia detrás de tu proyecto, qué problema soluciona, por qué lo creaste y a qué tipo de usuarios está dirigido. Haz que sea inspirador y claro.
+Un sistema de gestión de finanzas personales desarrollado en **Python** que combina Programación Orientada a Objetos (POO), persistencia de datos local en formato JSON y un modelo predictivo de **Machine Learning** (Regresión Lineal) para anticipar gastos y emitir alertas presupuestarias tempranas.
 
 ---
 
 ## ✨ Características Principales
 
-* **Rápido y Ligero:** Optimizado para ofrecer el mejor rendimiento.
-* **Diseño Responsivo:** Se adapta perfectamente a teléfonos, tablets y computadoras.
-* **Interfaz Intuitiva:** Fácil de usar para cualquier tipo de usuario.
-* **Modular:** Código limpio y fácil de escalar o modificar.
+* **Arquitectura Orientada a Objetos (POO):** Clases estructuradas (`Transaccion` y `CalculadoraFinanciera`) con validaciones internas robustas para montos, textos y tipos de transacciones.
+* **Persistencia de Datos:** Guardado y carga automática de transacciones mediante archivos JSON (`mis_finanzas.json`).
+* **Reportes Financieros:** Cálculo de balance en tiempo real y desglose automatizado de gastos agrupados por categorías.
+* **🤖 Proyección de Gastos con Machine Learning:** Utiliza `pandas` para ingeniería de características e Inteligencia Artificial (`scikit-learn` - Regresión Lineal) para analizar el comportamiento diario del mes en curso y proyectar el gasto total al cierre del período.
+* **Sistema de Alerta Temprana:** Compara la proyección matemática de fin de mes con el presupuesto límite del usuario para advertir sobre posibles déficits o felicitar por finanzas sanas.
 
 ---
 
-## 🛠 Tecnologías Utilizadas
+## 🛠️ Tecnologías y Librerías Utilizadas
 
-* [![Lenguaje](https://shields.io)](https://mozilla.org)
-* [![Framework](https://shields.io)](https://reactjs.org)
-* [![Estilos](https://shields.io)](https://tailwindcss.com)
-* [![Base de datos](https://shields.io)](https://mongodb.com)
-
----
-
-## ⚙️ Instalación y Configuración
-
-Sigue estos pasos para clonar y ejecutar el proyecto en tu máquina local:
-
-1. **Clona el repositorio**
-   ```bash
-   git clone https://github.com
-   ```
-
-2. **Entra a la carpeta del proyecto**
-   ```bash
-   cd tu-repositorio
-   ```
-
-3. **Instala las dependencias**
-   ```bash
-   npm install
-   ```
-
-4. **Configura las variables de entorno**
-   Crea un archivo `.env` en la raíz y añade tus credenciales basándote en `.env.example`.
-
-5. **Ejecuta el proyecto**
-   ```bash
-   npm run dev
-   ```
+* **Python 3.x**
+* **Pandas** (Manipulación y transformación de datos temporales)
+* **Scikit-Learn** (Modelo de Regresión Lineal)
+* **NumPy** (Operaciones numéricas)
+* **Módulos nativos:** `json`, `datetime`, `calendar`, `os`
 
 ---
 
-## 🚀 Uso
+## 🚀 Instalación y Uso
 
-Explica brevemente cómo usar la aplicación una vez iniciada o añade ejemplos de comandos clave.
-
-```javascript
-// Ejemplo rápido de inicialización o uso de la API
-const app = require('./app');
-app.start();
-```
-
----
-
-## 🤝 Contribución
-
-¡Las contribuciones son siempre bienvenidas! 
-1. Haz un **Fork** del proyecto.
-2. Crea una nueva rama para tu función (`git checkout -b feature/NuevaSeccion`).
-3. Realiza tus cambios y haz commit (`git commit -m 'Agrega nueva sección'`).
-4. Sube tu rama (`git push origin feature/NuevaSeccion`).
-5. Abre un **Pull Request**.
-
+### 1. Clonar el repositorio
+```bash
+git clone [https://github.com/tu-usuario/tu-repositorio.git](https://github.com/tu-usuario/tu-repositorio.git)
+cd tu-repositorio
 ---
 
 ## 📄 Licencia
