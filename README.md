@@ -26,7 +26,7 @@ Un sistema de gestión de finanzas personales desarrollado en **Python** que com
 
 ## 🚀 Instalación y Uso
 
-### 1. Clonar el repositorio
+### 1. Clonar el repositorio:
 ```bash
 git clone [https://github.com/davidsayas/Economy-AI-PREDICTOR-FOR-OWN-USE-OR-BUSINESS-PURPOSES..git](https://github.com/davidsayas/Economy-AI-PREDICTOR-FOR-OWN-USE-OR-BUSINESS-PURPOSES..git)
 cd Economy-AI-PREDICTOR-FOR-OWN-USE-OR-BUSINESS-PURPOSES.
@@ -39,8 +39,13 @@ Distribuido bajo la Licencia **MIT**. Consulta el archivo `LICENSE` para más in
   <sub>Hecho por <a href="https://github.com">Juan David</a></sub>
 </div>
 
-### 2. Instalar dependencias
+### 2. Instalar dependencias:
 Asegúrate de tener instalados los paquetes requeridos para el análisis de datos y ML:
 ```bash
 pip install pandas scikit-learn numpy
- 
+```
+### 3. Ejecutar la aplicacion:
+```bash
+python main.py
+```
+
