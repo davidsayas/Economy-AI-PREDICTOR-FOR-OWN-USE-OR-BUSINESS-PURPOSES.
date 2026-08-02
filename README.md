@@ -48,4 +48,14 @@ pip install pandas scikit-learn numpy
 ```bash
 python main.py
 ```
+## 💻 Interfaz de Consola
+=============================================
+💼 PLANIFICADOR FINANCIERO CON IA
+=============================================
+1. Agregar Transacción
+2. Ver Reporte y Balance Total
+3. Ver Resumen de Gastos por Categoría
+4. 🤖 Predecir Gastos a Fin de Mes (IA)
+5. Guardar y Salir
+```
 
